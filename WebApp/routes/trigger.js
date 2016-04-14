@@ -7,8 +7,8 @@ var router = express.Router();
 router.use(bodyParser.json());
 
 router.post('/', function(request, response){
-  var actuator = request.body.actuator;
-  helper.triggerApplication(actuator.actionID, actuator.actionValue, function(data){
+  console.log(request.body);
+  helper.triggerApplication( request.body.actionID, request.body.actionValue, function(data){
     response.send(data);
   });
 });

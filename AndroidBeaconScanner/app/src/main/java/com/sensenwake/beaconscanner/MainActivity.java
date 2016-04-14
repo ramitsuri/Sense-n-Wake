@@ -3,6 +3,7 @@ package com.sensenwake.beaconscanner;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -87,9 +88,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         Intent scannerServiceIntent = new Intent(getBaseContext(), ScannerService.class);
         if(v.getId() == startScanButton.getId()){
+            System.out.println("start");
             startService(scannerServiceIntent);
         }
         else if(v.getId() == stopScanButton.getId()){
+            System.out.println("stop");
             stopService(scannerServiceIntent);
         }
     }
