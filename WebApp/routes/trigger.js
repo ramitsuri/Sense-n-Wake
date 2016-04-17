@@ -7,8 +7,8 @@ var router = express.Router();
 router.use(bodyParser.json());
 
 router.post('/', function(request, response){
-  console.log(request.body);
-  helper.triggerApplication( request.body.actionID, request.body.actionValue, function(data){
+  var sensors = request.body;  
+  helper.triggerApplication(sensors, function(data){
     response.send(data);
   });
 });
