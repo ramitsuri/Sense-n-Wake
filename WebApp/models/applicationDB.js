@@ -2,14 +2,14 @@ var mongoose = require('mongoose');
 
 var applicationSchema = mongoose.Schema({
   applicationID: String,
-  sensor: {
+  sensors: [{
     sensorID: String,
     sensorValue: String
-  },
-  actuator:{
+  }],
+  actuators:[{
     actionID: String,
     actionValue: String
-  }
+  }]
 });
 
 var application = mongoose.model('applications', applicationSchema);
