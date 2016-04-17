@@ -10,17 +10,11 @@ var getApplication = function(appID, callback){
     });
 }
 
-var addApplication = function(appID, appSensorID, appSensorValue, appActionID, appActionValue, callback){
+var addApplication = function(app, callback){
   var newApplication = new Application({
-    applicationID: appID,
-    sensor: {
-      sensorID: appSensorID,
-      sensorValue: appSensorValue
-    },
-    actuator:{
-      actionID: appActionID,
-      actionValue: appActionValue
-    }
+    applicationID: app.applicationID,
+    sensors: app.sensors,
+    actuators:app.actuators
   });
   newApplication.save(
     function(err){
@@ -29,23 +23,14 @@ var addApplication = function(appID, appSensorID, appSensorValue, appActionID, a
   });
 }
 
-var editApplication = function(appID, appSensorID, appSensorValue, appActionID, appActionValue, callback){
-  Application.findOneAndUpdate({ applicationID: appID },
-    { applicationID: appID,
-      sensor: {
-        sensorID: appSensorID,
-        sensorValue: appSensorValue
-      },
-      actuator:{
-        actionID: appActionID,
-        actionValue: appActionValue
-      }
-    },
+var editApplication = function(givenapp, callback){
+  Application.findOneAndUpdate({ applicationID: givenapp.applicationID },{sensors: givenapp.sensors, actuators:givenapp.actuators},
     function(err, app){
       if (err) console.log(err);
       callback("updated");
     });
 }
+
 
 var deleteApplication = function(appID, callback){
   Application.findOneAndRemove({ applicationID: appID },

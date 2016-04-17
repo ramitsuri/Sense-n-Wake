@@ -19,13 +19,6 @@ router.get('/:appID', function(request, response){
   });
 });
 
-router.put('/', function(request, response){
-  var app = request.body.application;
-  dbHelper.editApplication(app.applicationID, app.sensor.sensorID, app.sensor.sensorValue, app.actuator.actionID, app.actuator.actionValue, function(data){
-    response.send(data);
-  });
-});
-
 router.delete('/:appID', function(request, response){
   var appID = request.params.appID;
   dbHelper.deleteApplication(appID, function(data){
@@ -33,9 +26,17 @@ router.delete('/:appID', function(request, response){
   });
 });
 
+//Add a new Application
 router.post('/', function(request, response){
   var app = request.body.application;
-  dbHelper.addApplication(app.applicationID, app.sensor.sensorID, app.sensor.sensorValue, app.actuator.actionID, app.actuator.actionValue, function(data){
+  dbHelper.addApplication(app, function(data){
+    response.send(data);
+  });
+});
+//Edit the existing Application 
+router.put('/', function(request, response){
+  var app = request.body.application;
+  dbHelper.editApplication(app, function(data){
     response.send(data);
   });
 });
