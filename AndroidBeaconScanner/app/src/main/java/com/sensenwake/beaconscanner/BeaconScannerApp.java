@@ -32,6 +32,7 @@ public class BeaconScannerApp extends Application {
         beaconManager.getBeaconParsers().add(new BeaconParser().
                 setBeaconLayout("s:0-1=feaa,m:2-2=10,p:3-3:-41,i:4-20v"));
 
+
         // Get the details for all the beacons we encounter.
         region = new Region("justGiveMeEverything", null, null, null);
     }
