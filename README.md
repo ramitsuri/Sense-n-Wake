@@ -6,3 +6,8 @@
 5. Run `mongod --dbpath <path to WebApp directory>\data\`
 6. Run `nodemon app.js`
 7. Application will run on port 1399.
+
+## Steps to run WeaveProxy
+1. Run `source myvenv/bin/activate.csh` inside the 'WeaveProxy' directory to active the virtual environtment for Python
+2. Run `python manage.py runserver 0.0.0.0:1398`
+3. Application will run on port 1398.
