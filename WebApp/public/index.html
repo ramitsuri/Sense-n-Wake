@@ -60,6 +60,37 @@
       z-index: 900;
     }
     </style>
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="/js/weave-discovery.js"></script>
+
+    <link rel="import" href="bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+    <link rel="import" href="bower_components/iron-ajax/iron-ajax.html">
+    <link rel="import" href="bower_components/paper-button/paper-button.html">
+    <link rel="import" href="bower_components/paper-card/paper-card.html">
+    <link rel="import" href="bower_components/paper-toggle-button/paper-toggle-button.html">
+    <link rel="import" href="bower_components/google-signin/google-signin.html">
+    <link rel="import" href="bower_components/paper-styles/typography.html">
+    <style is="custom-style">
+      google-signin {
+        margin-top: 10px;
+        display: block;
+      }
+
+      paper-button {
+        background-color: var(--paper-blue-500);
+        color: white;
+        @apply(--paper-font-common-base);
+      }
+
+      paper-card {
+        @apply(--paper-font-common-base);
+        margin: 10px 10px;
+      }
+
+      .toggle {
+        margin: 10px 0;
+      }
+    </style>
   </head>
   <body>
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
@@ -89,19 +120,7 @@
       <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
         <header class="demo-drawer-header">
           <img src="images/user.jpg" class="demo-avatar">
-          <div class="demo-avatar-dropdown">
-            <span>hello@example.com</span>
-            <div class="mdl-layout-spacer"></div>
-            <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-              <i class="material-icons" role="presentation">arrow_drop_down</i>
-              <span class="visuallyhidden">Accounts</span>
-            </button>
-            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-              <li class="mdl-menu__item">hello@example.com</li>
-              <li class="mdl-menu__item">info@example.com</li>
-              <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
-            </ul>
-          </div>
+          <google-signin client-id="392707050470-q2vonfmhiqg733f3o5nkumva1l5cvl5f.apps.googleusercontent.com" scopes="https://www.googleapis.com/auth/weave.app"></google-signin>
         </header>
         <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
           <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Home</a>
@@ -160,7 +179,52 @@
               <use xlink:href="#chart">
             </svg>
           </div> -->
-          <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">
+          <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid">
+            <div class="demo-toggle mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+              <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
+                <h2 class="mdl-card__title-text">Leds</h2>
+              </div>
+              <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                <template is="dom-bind" id="app">
+                  <div>
+                    <iron-ajax
+                          url="https://www.googleapis.com/weave/v1/authorizedApps/createAppAuthenticationToken"
+                        with-credentials
+                        handle-as="json"
+                        method="POST"
+                        on-response="ajaxHandler"
+                        id="ajax"></iron-ajax>
+                  </div>
+                  <template is="dom-repeat" items="[[devices]]" as="device">
+                    <paper-card elevation="1" id="[[device.id]]">
+                      <div class="card-content">
+                        <span>[[device.name]]</span> - <span><em>[[device.connectionStatus]]</em></span>
+                        <template is="dom-repeat" items="{{getCommandDefs(device.commandDefs)}}">
+                          <template is="dom-if" if="{{isSet(item)}}">
+                            <template is="dom-repeat" items="[[rangeToArray(item, device.state)]]" as="led">
+                              <div class="toggle">
+                                <label>LED <span>[[led.id]]</span></label>
+                                <paper-button toggles raised on-click="toggleLed" _led="[[led.id]]"
+                                                     command="[[led.command]]" device="[[device.id]]"
+                                                     active="{{led.state}}"
+                                                     checked="{{led.state}}"
+                                                     disabled="[[isOffline(device)]]">Toggle</paper-button>
+                                <template is="dom-if" if="{{led.state}}">
+                                  <label><img src="images/on.png"></label>
+                                </template>
+                              </div>
+                            </template>
+                          </template>
+                        </template>
+                      </div>
+                    </paper-card>
+                  </template>
+                </template>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Read More</a>
+              </div>
+            </div>
             <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
               <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
                 <h2 class="mdl-card__title-text">Updates</h2>
@@ -172,7 +236,6 @@
                 <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Read More</a>
               </div>
             </div>
-            <div class="demo-separator mdl-cell--1-col"></div>
             <div class="demo-options mdl-card mdl-color--deep-purple-500 mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--3-col-tablet mdl-cell--12-col-desktop">
               <div class="mdl-card__supporting-text mdl-color-text--blue-grey-50">
                 <h3>View options</h3>
@@ -262,5 +325,7 @@
       </svg>
       <!-- <a href="https://github.com/google/material-design-lite/blob/master/templates/dashboard/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">View Source</a> -->
     <script src="/js/material.min.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=gapiLoaded"></script>
   </body>
 </html>
