@@ -68,13 +68,48 @@ $(document).ready(function(){
                 
             }
 
-            $('<div class="mdl-card__actions mdl-card--border">' +
+          /*  $('<div class="mdl-card__actions mdl-card--border">' +
                 '<a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect" data-upgraded=",MaterialButton,MaterialRipple">View More Applications' +
                      '<span class="mdl-button__ripple-container">' +
                           '<span class="mdl-ripple"></span>' +
                      '</span>' +
                 '</a>' +
-            '</div>').appendTo(appsDiv);
+            '</div>').appendTo(appsDiv);*/
+        }
+    });
+	
+	    // Display all applications on the All Applications page
+    $.ajax({
+        url : serverPath + '/all/',
+        type: 'GET',
+        success : function (applications) {
+            var colors = ['teal', 'indigo', 'amber', 'blue'];
+            var allAppsDiv = '#allApps';
+            var n = applications.length;
+
+            for(var i=0; i<n; ++i) {
+                var _id = applications[i]._id;
+
+                var aTag = $('<a />')
+                    .addClass("mdl-card__title-text")
+                    .attr('id', _id)
+                    .attr('href', '/application/' + _id)
+                    .text(applications[i].applicationID);
+                
+               var appDivTag = $('<div />')
+                    .addClass("mdl-card__title mdl-card--expand mdl-color--" + colors[i%4] + "-300 application-list")
+                    .append(aTag);
+                
+                $(allAppsDiv).append(appDivTag);
+
+                /*// Register on click handler
+                $('#' + _id).on('click', function(e) {
+                    e.preventDefault();
+                    
+                })*/
+
+                
+            }
         }
     });
 
