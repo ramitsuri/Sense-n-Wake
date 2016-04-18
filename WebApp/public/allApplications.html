@@ -147,22 +147,6 @@
       <main class="mdl-layout__content mdl-color--grey-100">
         <div class="mdl-grid demo-content">
           <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-            <!-- <svg fill="currentColor" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
-              <use xlink:href="#piechart" mask="url(#piemask)">
-              <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">82<tspan font-size="0.2" dy="-0.07">%</tspan></text>
-            </svg>
-            <svg fill="currentColor" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
-              <use xlink:href="#piechart" mask="url(#piemask)">
-              <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">82<tspan dy="-0.07" font-size="0.2">%</tspan></text>
-            </svg>
-            <svg fill="currentColor" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
-              <use xlink:href="#piechart" mask="url(#piemask)">
-              <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">82<tspan dy="-0.07" font-size="0.2">%</tspan></text>
-            </svg>
-            <svg fill="currentColor" width="200px" height="200px" viewBox="0 0 1 1" class="demo-chart mdl-cell mdl-cell--4-col mdl-cell--3-col-desktop">
-              <use xlink:href="#piechart" mask="url(#piemask)">
-              <text x="0.5" y="0.5" font-family="Roboto" font-size="0.3" fill="#888" text-anchor="middle" dy="0.1">82<tspan dy="-0.07" font-size="0.2">%</tspan></text>
-            </svg> -->
             <div class="mdl-card__title mdl-card--expand mdl-color--teal-300 application-list">
               <h2 class="mdl-card__title-text">Application 1</h2>
             </div>
@@ -175,62 +159,14 @@
             <div class="mdl-card__title mdl-card--expand mdl-color--blue-grey-300 application-list">
               <h2 class="mdl-card__title-text">Application 4</h2>
             </div>
-            <div class="mdl-card__actions mdl-card--border">
-              <a href="allApplications.html" class="mdl-button mdl-js-button mdl-js-ripple-effect">View More Applications</a>
+			<div class="mdl-card__title mdl-card--expand mdl-color--green-300 application-list">
+              <h2 class="mdl-card__title-text">Application 5</h2>
             </div>
-          </div>
-		  <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col">
-              <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
-                <h2 class="mdl-card__title-text">Updates</h2>
-              </div>
-			  <div id="logsDiv" class="mdl-card__supporting-text mdl-color-text--grey-600">
-              </div>
-          </div>
-          <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid">
-            <div class="demo-toggle mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
-              <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
-                <h2 class="mdl-card__title-text">Leds</h2>
-              </div>
-              <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                <template is="dom-bind" id="app">
-                  <div>
-                    <iron-ajax
-                          url="https://www.googleapis.com/weave/v1/authorizedApps/createAppAuthenticationToken"
-                        with-credentials
-                        handle-as="json"
-                        method="POST"
-                        on-response="ajaxHandler"
-                        id="ajax"></iron-ajax>
-                  </div>
-                  <template is="dom-repeat" items="[[devices]]" as="device">
-                    <paper-card elevation="1" id="[[device.id]]">
-                      <div class="card-content">
-                        <span>[[device.name]]</span> - <span><em>[[device.connectionStatus]]</em></span>
-                        <template is="dom-repeat" items="{{getCommandDefs(device.commandDefs)}}">
-                          <template is="dom-if" if="{{isSet(item)}}">
-                            <template is="dom-repeat" items="[[rangeToArray(item, device.state)]]" as="led">
-                              <div class="toggle">
-                                <label>LED <span>[[led.id]]</span></label>
-                                <paper-button toggles raised on-click="toggleLed" _led="[[led.id]]"
-                                                     command="[[led.command]]" device="[[device.id]]"
-                                                     active="{{led.state}}"
-                                                     checked="{{led.state}}"
-                                                     disabled="[[isOffline(device)]]">Toggle</paper-button>
-                                <template is="dom-if" if="{{led.state}}">
-                                  <label><img src="images/on.png"></label>
-                                </template>
-                              </div>
-                            </template>
-                          </template>
-                        </template>
-                      </div>
-                    </paper-card>
-                  </template>
-                </template>
-              </div>
-              <div class="mdl-card__actions mdl-card--border">
-                <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Read More</a>
-              </div>
+			<div class="mdl-card__title mdl-card--expand mdl-color--cyan-300 application-list">
+              <h2 class="mdl-card__title-text">Application 6</h2>
+            </div>
+			<div class="mdl-card__title mdl-card--expand mdl-color--orange-300 application-list">
+              <h2 class="mdl-card__title-text">Application 7</h2>
             </div>
           </div>
         </div>
