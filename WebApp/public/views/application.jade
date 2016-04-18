@@ -1,0 +1,101 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+
+        title #{application.applicationID}
+
+        meta(name="mobile-web-app-capable", content="yes")
+        link(rel="icon", sizes="192x192", href="images/android-desktop.png")
+
+        link(href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en", rel="stylesheet")
+        link(href="https://fonts.googleapis.com/icon?family=Material+Icons", rel="stylesheet")
+
+        <!-- Latest compiled and minified CSS -->
+        link(
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+            integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+            crossorigin="anonymous"
+        )
+
+        <!-- Optional theme -->
+        link(
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+            integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
+            crossorigin="anonymous"
+         )
+
+        link(rel="stylesheet", href="/css/material.min.css")
+        link(rel="stylesheet" href="/css/styles.css")
+
+        script(type="text/javascript", src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js")
+
+        <!-- Latest compiled and minified JavaScript -->
+        script(
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"
+        )
+        script(src="/js/material.min.js")
+
+    body
+        .demo-layout.mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer.mdl-layout--fixed-header
+
+            header.demo-header.mdl-layout__header.mdl-color--grey-100.mdl-color-text--grey-600
+                .mdl-layout__header-row
+                    span.mdl-layout-title Rule for <em><strong>#{application.applicationID}</strong></em>
+                    .mdl-layout-spacer
+
+            .demo-drawer.mdl-layout__drawer.mdl-color--blue-grey-900.mdl-color-text--blue-grey-50
+
+                header.demo-drawer-header
+                    img.demo-avatar(src='/images/user.jpg')
+                    google-signin(client-id='392707050470-q2vonfmhiqg733f3o5nkumva1l5cvl5f.apps.googleusercontent.com', scopes='https://www.googleapis.com/auth/weave.app')
+
+                nav.demo-navigation.mdl-navigation.mdl-color--blue-grey-800
+                    a.mdl-navigation__link(href='')
+                        i.mdl-color-text--blue-grey-400.material-icons(role='presentation') home
+                        | Home
+                    a.mdl-navigation__link(href='')
+                        i.mdl-color-text--blue-grey-400.material-icons(role='presentation') inbox
+                        | Applications
+                    a.mdl-navigation__link(href='')
+                        i.mdl-color-text--blue-grey-400.material-icons(role='presentation') delete
+                        | Map
+                    a.mdl-navigation__link(href='')
+                        i.mdl-color-text--blue-grey-400.material-icons(role='presentation') report
+                        | Logs
+                    a.mdl-navigation__link(href='')
+                        i.mdl-color-text--blue-grey-400.material-icons(role='presentation') forum
+                        | Settings
+                    .mdl-layout-spacer
+
+
+            main.mdl-layout__content.mdl-color--grey-100
+                .mdl-grid
+                    .mdl-cell.mdl-cell--12-col.mdl-cell--12-col-tablet.mdl-grid
+                        .mdl-card.mdl-shadow--2dp.mdl-cell.mdl-cell--12-col.mdl-cell--4-col-tablet.mdl-cell--12-col-desktop
+                            h1 <center> If </center>
+                            -var i=0
+                            -var len=application.sensors.length
+                            for sensor in application.sensors
+                                if i++ < len-1
+                                    h3 <center>Sensor : #{sensor.sensorID} has Value : #{sensor.sensorValue} </center>
+                                    h4 <center> and </center>
+                                else
+                                    h3 <center>Sensor : #{sensor.sensorID} has Value : #{sensor.sensorValue} </center>
+
+
+                            -var j=0
+                            -var alen=application.actuators
+                            h1 <center> then </center>
+                            for actuator in application.actuators
+                                if j++ < alen-1
+                                    h3 <center> Actuator : #{actuator.actionID} takes Value : #{actuator.actionValue} </center>
+                                    h4 <center> and </center>
+                                else
+                                    h3 <center> Actuator : #{actuator.actionID} takes Value : #{actuator.actionValue} </center>

@@ -3,7 +3,7 @@ var dbModel = require('../models/applicationDB.js');
 var Application = dbModel.application;
 
 var getApplication = function(appID, callback){
-  Application.find({ applicationID: appID },
+  Application.findOne({ _id: appID },
     function(err, foundApp) {
       if (err) console.log(err);
       callback(foundApp);
