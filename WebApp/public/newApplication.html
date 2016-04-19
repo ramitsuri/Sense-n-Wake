@@ -140,16 +140,28 @@
         </nav>
       </div>
       <main class="mdl-layout__content mdl-color--grey-100">
-        <div class="mdl-grid demo-content">
-		<form action="/new" method="POST">
-			<label for="applicationID">Application ID: </label>
-			<input type="text" name="applicationID" /><br />
-			<label for="sensors">Sensors: </label>
-			<input type="text" name="sensors" /><br />
-			<label for="actuators">Actuators: </label>
-			<input type="text" name="actuators" /><br />
-			<input type="submit"/>
-		</form>
+        <div class="mdl-grid demo-content ">
+		
+<form>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+        <label for="input_text" class="mdl-textfield__label">Application name</label>
+        <input type="text" class="mdl-textfield__input" id="applicationID" />
+    </div>
+	<br/>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <label for="input_text" class="mdl-textfield__label">Sensors</label>
+        <input type="text" class="mdl-textfield__input" id="sensors" />
+    </div>
+	<br/>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <label for="input_text" class="mdl-textfield__label">Actuators</label>
+        <input type="text" class="mdl-textfield__input" id="actuators" />
+    </div>
+	<br/>
+	<button class="mdl-button">Submit</button>
+</form>
+		
         </div>
       </main>
     </div>
