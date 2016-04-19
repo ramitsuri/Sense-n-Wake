@@ -1,4 +1,4 @@
-var serverPath = 'http://localhost:1399';
+var serverPath = 'http://' + window.location.hostname + ':' + window.location.port;
 
 $(document).ready(function(){
     
@@ -42,7 +42,7 @@ $(document).ready(function(){
         success : function (applications) {
             var colors = ['teal', 'indigo', 'amber', 'blue'];
             var appsDiv = '#3appsDiv';
-            var n = applications.length > 3 ? 3 : applications.length;
+            var n = applications.length > 4 ? 4 : applications.length;
 
             for(var i=0; i<n; ++i) {
                 var _id = applications[i]._id;
@@ -77,41 +77,4 @@ $(document).ready(function(){
             '</div>').appendTo(appsDiv);*/
         }
     });
-	
-	    // Display all applications on the All Applications page
-    $.ajax({
-        url : serverPath + '/all/',
-        type: 'GET',
-        success : function (applications) {
-            var colors = ['teal', 'indigo', 'amber', 'blue'];
-            var allAppsDiv = '#allApps';
-            var n = applications.length;
-
-            for(var i=0; i<n; ++i) {
-                var _id = applications[i]._id;
-
-                var aTag = $('<a />')
-                    .addClass("mdl-card__title-text")
-                    .attr('id', _id)
-                    .attr('href', '/application/' + _id)
-                    .text(applications[i].applicationID);
-                
-               var appDivTag = $('<div />')
-                    .addClass("mdl-card__title mdl-card--expand mdl-color--" + colors[i%4] + "-300 application-list")
-                    .append(aTag);
-                
-                $(allAppsDiv).append(appDivTag);
-
-                /*// Register on click handler
-                $('#' + _id).on('click', function(e) {
-                    e.preventDefault();
-                    
-                })*/
-
-                
-            }
-        }
-    });
-
-
 });
