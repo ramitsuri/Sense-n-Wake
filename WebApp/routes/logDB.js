@@ -16,7 +16,8 @@ router.get('/:logID', function(request, response){
   var logID = request.params.logID;
   dbHelper.getLog(logID, function(log){
     response.send(log);
-  });});
+  });
+});
 
 router.post('/', function(request, response){
   var log = request.body.log;

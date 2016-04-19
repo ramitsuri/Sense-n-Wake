@@ -6,6 +6,7 @@ var applicationDBRoutes = require('./routes/applicationDB.js');
 var htmlRoutes = require('./routes/html.js');
 var logDBRoutes = require('./routes/logDB.js');
 var triggerRoutes = require('./routes/trigger.js');
+var devicesRoutes = require('./routes/devicesDB.js');
 
 var app = express();
 
@@ -18,6 +19,7 @@ app.use('/application', applicationDBRoutes);
 app.use('/', htmlRoutes);
 app.use('/log', logDBRoutes);
 app.use('/trigger', triggerRoutes);
+app.use('/devices', devicesRoutes);
 
 app.listen(port);
 console.log("Starting on port " + port);

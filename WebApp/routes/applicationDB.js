@@ -20,9 +20,8 @@ router.get('/all', function(request, response){
 router.get('/:appID', function(request, response){
   var appID = request.params.appID;
   dbHelper.getApplication(appID, function(application){
-    //response.send(application);
-    console.log(application);
-    response.render(path.join(root, '../', public, views,'application.jade'), {application: application});
+      //console.log(application);
+      response.send(application);
   });
 });
 
@@ -36,10 +35,12 @@ router.delete('/:appID', function(request, response){
 //Add a new Application
 router.post('/', function(request, response){
   var app = request.body.application;
+
   dbHelper.addApplication(app, function(data){
     response.send(data);
   });
 });
+
 //Edit the existing Application 
 router.put('/', function(request, response){
   var app = request.body.application;

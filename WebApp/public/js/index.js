@@ -50,7 +50,7 @@ $(document).ready(function(){
                 var aTag = $('<a />')
                     .addClass("mdl-card__title-text")
                     .attr('id', _id)
-                    .attr('href', '/application/' + _id)
+                    .attr('href', '/application/get/' + _id)
                     .text(applications[i].applicationID);
                 
                var divTag = $('<div />')
