@@ -1,13 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var dbHelper = require('../helper/applicationDB.js');
-var path = require('path');
 
 var router = express.Router();
-
-var root = __dirname;
-var public = '/public/';
-var views =  '/views';
 
 router.use(bodyParser.json());
 
@@ -20,9 +15,9 @@ router.get('/all', function(request, response){
 router.get('/:appID', function(request, response){
   var appID = request.params.appID;
   dbHelper.getApplication(appID, function(application){
-    //response.send(application);
-    console.log(application);
-    response.render(path.join(root, '../', public, views,'application.jade'), {application: application});
+    response.send(application);
+    //console.log(application);
+    //response.render(path.join(root, '../', public, views,'application.jade'), {application: application});
   });
 });
 
@@ -40,7 +35,7 @@ router.post('/', function(request, response){
     response.send(data);
   });
 });
-//Edit the existing Application 
+//Edit the existing Application
 router.put('/', function(request, response){
   var app = request.body.application;
   dbHelper.editApplication(app, function(data){
