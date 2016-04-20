@@ -53,8 +53,18 @@
     <!-- link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" -->
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
     <script src="/js/material.min.js"></script>
-    <script src="js/index.js"></script>
+    <script src="js/newApp.js"></script>
+
     <script src="/js/app.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=gapiLoaded"></script>
     <style>
@@ -140,29 +150,63 @@
         </nav>
       </div>
       <main class="mdl-layout__content mdl-color--grey-100">
-        <div class="mdl-grid demo-content ">
+        <div class="container">
 		
-<form>
+<!--<form>
 
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label ">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield&#45;&#45;floating-label ">
         <label for="input_text" class="mdl-textfield__label">Application name</label>
         <input type="text" class="mdl-textfield__input" id="applicationID" />
     </div>
 	<br/>
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield&#45;&#45;floating-label">
         <label for="input_text" class="mdl-textfield__label">Sensors</label>
         <input type="text" class="mdl-textfield__input" id="sensors" />
     </div>
 	<br/>
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield&#45;&#45;floating-label">
         <label for="input_text" class="mdl-textfield__label">Actuators</label>
         <input type="text" class="mdl-textfield__input" id="actuators" />
     </div>
 	<br/>
 	<button class="mdl-button">Submit</button>
-</form>
-		
-        </div>
+</form>-->
+            <form>
+              <div class="form-group">
+                <label for="applicationID">Application Name:</label>
+                <input type="text" class="form-control" id="applicationID" placeholder="Application name">
+              </div>
+              <div id="sensor_div_1">
+                <div class="form-group">
+                  <label for="sensor_id_1">Sensor ID:</label>
+                  <select class="form-control" id="sensor_id_1">
+                    <option value=""></option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="sensor_val_1">Sensor Value:</label>
+                  <select class="form-control" id="sensor_val_1" disabled></select>
+                </div>
+              </div>
+
+              <div id="act_div_1">
+                <div class="form-group">
+                  <label for="act_id_1">Actuator ID:</label>
+                  <select class="form-control" id="act_id_1">
+                    <option value=""></option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="act_val_1">Actuator Value:</label>
+                  <select class="form-control" id="act_val_1" disabled></select>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary" id="subBtn">Submit</button>
+            </form>
+          </div>
       </main>
     </div>
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" style="position: fixed; left: -1000px; height: -1000px;">
